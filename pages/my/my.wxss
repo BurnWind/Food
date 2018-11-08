@@ -69,7 +69,8 @@ page{
 }
 .navigator-arrow {
   position: relative;
-  top: -8rpx;
+  height: 100%;
+  float: right;
 }
 .navigator-arrow:after {
   content: " ";
@@ -82,7 +83,8 @@ page{
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   position: absolute;
   top: 50%;
-  left: 14rem;  
+  margin-top: -9rpx;
+  right: 1rem;  
 }
 /* 订单状态栏 */
 .orderstatus_bar{
@@ -106,6 +108,7 @@ page{
 /* 收货地址 */
 /* 购物车 */
 .address,.shopping_cart{
+  box-sizing: border-box;
   width: 100%;
   height: 110rpx;
   margin-top: 30rpx;

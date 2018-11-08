@@ -10,8 +10,8 @@
   </view>
   <view class="order_bar">
     <text class="myorder">我的订单</text>
-    <text class="allorder">查看全部订单</text>
     <text class="navigator-arrow"></text>
+    <text class="allorder">查看全部订单</text>
   </view>
   <view class="orderstatus_bar">
     <view class="icon_bar">
