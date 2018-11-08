@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<!-- banner图 -->
+<view class='swiper-container'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay='{{autoplay}}' interval='{{interval}}' duration='{{duration}}' circular='{{circular}}'>
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  class='swiper-item' mode="scaleToFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 搜索框 -->
+<view class='search-container'>
+  <form class='search-form'>
+    <icon class='search-icon' type="search" size='16px' color="#aaa"></icon>
+    <input type="text" placeholder="美味新零食" maxlength='20' class='search-input'></input>
+  </form>
+</view>
+
+<!-- 热销商品展示 -->
+<view class='product-container'>
+  <block wx:for="{{product}}">
+    <view class="product-item">
+      <image src="{{item.url}}" class="product-img"></image>
+      <text class="product-text">{{item.text}}</text>
+      <text class="product-price">￥ {{item.price}}</text>
+      <view class="product-button">马上抢</view>
+    </view>
+  </block>
+</view>
+
+
+
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
