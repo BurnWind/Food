@@ -1,13 +1,11 @@
 <!-- 搜索框 -->
-<view class='search-container'>
-  <form class='search-form'>
-    <icon class='search-icon' type="search" size='16px' color="#aaa"></icon>
-    <input type="text" placeholder="肥宅快乐水" maxlength='20' class='search-input'></input>
-  </form>
-</view>
+<import src='/pages/template/template.wxml'/>
+<template is='search'/>
 
-<scroll-view scroll-x class="classify-container">
+<scroll-view scroll-x='true' class="classify-container">
   <block wx:for="{{classify}}">
-    <button class="classify-button">{{item.text}}</button>
+    <button class="classify-button {{num==item.index?'button-active':''}}" bindtap='select' data-index='{{item.index}}'>{{item.text}}</button>
   </block>
 </scroll-view>
+
+<template is='product' data='{{product}}' />

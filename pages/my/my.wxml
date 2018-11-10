@@ -8,11 +8,11 @@
     <text class="login_text">登录手机号,同步全渠道订单和优惠券</text>
     <button class="login">登录</button>
   </view>
-  <view class="order_bar">
+  <navigator class="order_bar" url="/pages/order/order">
     <text class="myorder">我的订单</text>
     <text class="navigator-arrow"></text>
     <text class="allorder">查看全部订单</text>
-  </view>
+  </navigator>
   <view class="orderstatus_bar">
     <view class="icon_bar">
       <icon class="order_icon iconfont icon-daifukuan"></icon>

@@ -1,3 +1,4 @@
+
 // pages/classification/classification.js
 Page({
 
@@ -5,7 +6,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    classify:[
+      {
+        text:'膨化食品',
+        index:0,
+      },
+      {
+        text: '膨化食品',
+        index: 1,
+      },
+      {
+        text: '膨化食品',
+        index: 2,
+      },
+      {
+        text: '膨化食品',
+        index: 3,
+      },
+      {
+        text: '膨化食品',
+        index: 4,
+      },
+      {
+        text: '膨化食品',
+        index: 5,
+      }
+    ],
+    num:0,
+    product: [{
+      img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+      text: '测试商品',
+      price: '18',
+      url: '/pages/product_detail/product_detail'
+    },
+    {
+      img_url: '../../images/TB2zEQZvcUrBKNjSZPxXXX00pXa_!!880734502.jpg',
+      text: '测试商品',
+      price: '18',
+      url: '/pages/product_detail/product_detail'
+    },
+    {
+      img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+      text: '测试商品',
+      price: '18',
+      url: '/pages/product_detail/product_detail'
+    },
+    {
+      img_url: '../../images/TB2IQBBkH9YBuNjy0FgXXcxcXXa_!!2371566698.jpg',
+      text: '测试商品',
+      price: '18',
+      url: '/pages/product_detail/product_detail'
+    },
+    {
+      img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+      text: '测试商品',
+      price: '18',
+      url: '/pages/product_detail/product_detail'
+    },
+    ]
+  },
+  select:function(e){
+    this.setData({
+      num:e.target.dataset.index
+    })
   },
 
   /**

@@ -1,0 +1,144 @@
+/* banner图 */
+.swiper-item{
+  width:100%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+}
+/* 搜索框 */
+.search-container{
+  box-sizing: border-box;
+  width: 100%;
+  height:72rpx;
+  background-color: #eee;
+  padding:10rpx 20rpx;
+}
+.search-form{
+  position: relative;
+  display:block;
+  background-color: #fff;
+  width: 100%;
+  height:52rpx;
+  border-radius: 6rpx;
+}
+.search-icon{
+  display: inline-block;
+  position: absolute;
+  top:10rpx;
+  left:20rpx;
+
+  width:32rpx;
+  height:52rpx;
+  line-height: 52rpx;
+}
+.search-input{
+  position: absolute;
+  left:70rpx;
+  display:inline-block;
+  width:85%;
+  height:52rpx;
+  line-height: 52rpx;
+  font-size: 28rpx;
+  min-height: 32rpx;
+}
+
+
+/* 热销商品展示 */
+.product-container{
+  width:100%;
+  display: flex;
+  flex-wrap:wrap;
+}
+.product-item{
+  position: relative;
+  width:9rem;
+  border-radius: 5px;
+  margin:8px 0;
+  border:1px solid #D3B579;
+  margin-left: calc((100% - 18rem) / 3);
+}
+.product-img{
+  width:100%;
+  height:9rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.product-text{
+  display: block;
+  padding-left: 10px;
+  height:30px;
+  line-height: 30px;
+  font-size:14px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  background-color: #D3B579;
+  color:#fff;
+}
+.product-price{
+  display: block;
+  margin-left: 10px;
+  height:30px;
+  line-height: 30px;
+  color:#D3B579;
+  margin-top:5px;
+  margin-bottom: 5px;
+  font-size:20px;
+}
+.product-button{
+  position:absolute;
+  line-height: 20px;
+  right:8px;
+  bottom:7px;
+  width: 70px;
+  height:20px;
+  border-radius: 10px;
+  font-size:14px;
+  text-align: center;
+  color:#fff;
+  background: #D3B579;
+}
+
+/* 加减 */
+/*主容器*/
+.stepper {
+  width:225rpx;  
+  height: 52rpx;  
+  /*给主容器设一个边框*/  
+  border: 1rpx solid #777;  
+  border-radius: 1px;  
+  margin:0 auto;  
+}  
+
+/*加号和减号*/  
+.stepper text {
+    display: block;
+    width: 70rpx;  
+    line-height: 52rpx;  
+    text-align: center;  
+    float: left;  
+}  
+
+/*数值*/  
+.stepper input {  
+    width: 80rpx;  
+    height: 52rpx;  
+    float: left;  
+    margin: 0 auto;  
+    text-align: center;  
+    font-size: 24rpx;  
+    color: #777;
+    /*给中间的input设置左右边框即可*/  
+    border-left: 1rpx solid #777;  
+    border-right: 1rpx solid #777;  
+}  
+
+/*普通样式*/  
+.stepper .normal{  
+    color: #777;  
+}  
+
+/*禁用样式*/  
+.stepper .disabled{  
+    color: #ccc;  
+}  
