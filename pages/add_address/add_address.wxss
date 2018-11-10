@@ -1,0 +1,48 @@
+/* pages/add_address/add_address.wxss */
+page{
+  background: #F8F8F8;
+}
+/* 地址信息 */
+.information{
+  display:flex;
+  height: 3rem;
+  margin-bottom: 4rpx;
+  background-color: white;
+}
+.info-label{
+  display: inline-block;
+  width: 6rem;
+  line-height: 3rem;
+  font-size: 32rpx;
+  padding-left: 1rem;
+}
+.info-input{
+  display: inline-block;
+  height: 3rem;
+  width: 100%;
+  line-height: 3rem;
+  font-size: 32rpx;
+}
+/* 选择省市区 */
+.address_picker{
+  color: #808080;
+}
+/* 按钮操作 */
+.option_bar{
+  width: 100%;
+}
+.btn_option{
+  width: 90%;
+  height: 80rpx;
+  background-color: white;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 40rpx;
+  margin-top: 30rpx;
+  border-radius: 5px;
+  color: #333;
+}
+.btn_option:hover{
+  background-color:#D3B579;
+  color: white;
+}

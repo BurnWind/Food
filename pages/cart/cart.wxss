@@ -1,1 +1,163 @@
 /* pages/cart/cart.wxss */
+/* 购物车空时的样式 */
+page{
+  background-color: #f8f8f8;
+}
+.cart_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.text_a{
+  margin-top: 120rpx;
+  font-size: 36rpx;
+  color: #333;
+}
+.text_b{
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  color: #999;
+}
+.text_c{
+  margin-top: 60rpx;
+  font-size: 28rpx;
+  color: #D3B579;
+  border: 1px solid #D3B579;
+  width: 6.25rem;
+  height: 60rpx; 
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 5px;
+}
+/* 购物车不空时的样式 */
+.head{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  background-color: white;
+}
+checkbox{
+  height: 100rpx;
+  line-height: 90rpx;
+  margin-left: 20rpx;
+}
+/* checkbox未选中时样式 */
+checkbox .wx-checkbox-input{
+  border-radius: 50%;
+  height: 32rpx;
+  width: 32rpx;
+} 
+/* checkbox选中后样式 */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+  border: 1px solid white;
+  background: #D3B579;
+}
+.title{
+  display: inline-block;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+}
+.btn_edit{
+  display: inline-block;
+  color: #0066ff;
+  font-size: 24rpx;
+  border: none;
+  background-color: white;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-right: 20rpx;
+}
+.btn_edit:after{
+  border: none;
+}
+/* 购物车商品展示 */
+.food_bar{
+  width: 100%;
+  background-color: white;
+  margin-top: 4rpx;
+}
+.content{
+  display: flex;
+  flex-direction: row;
+}
+.chk_content{
+  height: 250rpx;
+  line-height: 250rpx;
+}
+.product-img{
+  width: 250rpx;
+  height: 250rpx;
+}
+.product_info{
+  width: 440rpx;
+  height: 200rpx;
+  font-size: 28rpx;
+}
+.product_text{
+  display: block;
+  margin: 20rpx;
+}
+.product_price{
+  display: inline-block;
+  color: #D3B579;
+  margin-left: 20rpx;
+  margin-top:30rpx;
+}
+.product_num{
+  display: inline-block;
+  position: relative;
+  left: 300rpx;
+}
+/* 底部 */
+.bottom{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  bottom: 0rpx;
+  background-color: white;
+}
+.text_1{
+  flex-grow: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+.text_2{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 24rpx;
+  margin-right: 10rpx;
+  margin-top: -14rpx;
+  font-weight: bold;
+}
+.text_3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx; 
+}
+.total_price{
+  color: #D3B579;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.text_4{
+  color: #666;
+  font-size: 20rpx;
+}
+.btn_bottom{
+  color: white;
+  width: 200rpx;
+  background-color: #D3B579;
+  margin-right: 0;
+  border-radius: 0;
+}
+.btn_bottom:after{
+  border: none;
+  border-radius: 0;
+}

@@ -31,14 +31,12 @@
       <text class="icon_text">已完成</text>
     </view>
   </view>
-  <view class="address">
+  <navigator class="address" url="/pages/add_address/add_address" >
     <text>收货地址</text>
     <text class="navigator-arrow"></text>
-  </view>
-  <view class="shopping_cart">
+  </navigator> 
+  <navigator class="shopping_cart" url="/pages/cart/cart" open-type="switchTab">
     <text space="emsp">购物车 </text>
     <text class="navigator-arrow"></text>
-  </view>
-  <!-- <view class="navigation-bottom">
-  </view> -->
+  </navigator>
 </view>

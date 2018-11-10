@@ -1,0 +1,53 @@
+<!-- cart.wxml -->
+<view class="cart_container">
+<!-- 购物车为空时 -->
+  <block wx:if="{{flag}}">
+    <view class="text_a">购物车快饿瘪了T.T</view>
+    <view class="text_b">快给我挑点宝贝</view>
+    <navigator class="text_c" url="/pages/index/index" open-type="switchTab">去逛逛</navigator>
+  </block>
+<!-- 购物车不空时 -->
+  <block wx:else>
+    <view class="head">
+      <checkbox-group bindchange="checkboxChange">  
+        <checkbox color="white" checked="{{checked}}"></checkbox>
+      </checkbox-group>
+      <text class="title">好好吃零食店</text>
+      <button class="btn_edit" bindtap="editpress">{{edit}}</button>
+    </view>
+<!-- 购物车商品展示 -->
+    <view class="food_bar">
+    <checkbox-group bindchange="product_checkboxChange">
+      <block wx:for="{{product}}">
+        <view class="content">
+          
+            <checkbox class="chk_content" color="white" checked="{{item.product_checked}}" value="{{index}}"></checkbox>
+         
+          <image src="{{item.url}}" class="product-img"></image>
+          <view class="product_info">
+            <text class="product_text">测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述</text>
+            <text class="product_price">￥18</text>
+            <text class="product_num">X1</text>
+          </view>
+        </view>
+      </block>
+    </checkbox-group>
+    </view>
+<!-- 底部结算栏 -->
+    <view class="bottom">
+      <checkbox-group bindchange="checkboxChange">
+        <checkbox color="white" checked="{{checked}}"></checkbox>
+      </checkbox-group>
+      <text class="text_1">全选</text>
+      <block wx:if="{{editbool}}">
+        <text class="text_2">合计:</text>
+        <view class="text_3">
+          <text class="total_price">￥18.80</text>
+          <text class="text_4">不含运费</text>
+        </view>
+        <button class="btn_bottom">结算</button>
+      </block>
+      <button wx:else class="btn_bottom">删除</button>
+    </view>
+  </block>
+</view>

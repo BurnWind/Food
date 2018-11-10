@@ -46,8 +46,11 @@ page{
   font-size: 28rpx;
   background-color: #D3B579;
   color: #fff;
-  border-radius: 0;
+  border-radius: 0rpx;
   line-height: 2rem;
+}
+.login:after{
+  border-radius: 0rpx;
 }
 /* 我的订单栏 */
 .order_bar{
@@ -95,12 +98,14 @@ page{
   background-color: white;
 }
 .icon_bar{
+  width: 120rpx;
   display: flex;
   flex-direction: column;
   justify-content:center;
   font-size: 28rpx;
   color: #717171;
-  margin-left: 2.2rem;
+  text-align: center;
+  margin-left: calc((100% - 480rpx)/5);
 }
 .icon_text{
   margin-top: 20rpx;
@@ -116,10 +121,6 @@ page{
   font-size: 32rpx;
   line-height: 110rpx;
   padding-left: 1rem;
-}
-.navigation-bottom{
-  margin-top: 30rpx;
-  height: 3rem;
 }
 
 
