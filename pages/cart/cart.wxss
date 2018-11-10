@@ -61,7 +61,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked{
 .btn_edit{
   display: inline-block;
   color: #0066ff;
-  font-size: 24rpx;
+  font-size: 28rpx;
   border: none;
   background-color: white;
   height: 100rpx;

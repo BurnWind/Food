@@ -82,7 +82,7 @@
 <!-- 底部悬浮栏 -->
 <view class="bottom-bar">
   <view class="service">客服</view>
-  <view class="cart">购物车</view>
+  <navigator class="cart" url="/pages/cart/cart" open-type="switchTab">购物车</navigator>
   <view class="add-cart" bindtap="showDialogCart">加入购物车</view>
   <view class="buy-now" bindtap="showDialogBuy">立即购买</view>
 </view>

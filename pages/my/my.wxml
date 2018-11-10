@@ -27,7 +27,7 @@
       <text class="icon_text">已发货</text>
     </view>
     <view class="icon_bar">
-      <icon class="order_icon iconfont icon-dingdanyiwancheng"></icon>
+      <icon class="order_icon iconfont icon-yiwanchengdingdan"></icon>
       <text class="icon_text">已完成</text>
     </view>
   </view>
