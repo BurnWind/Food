@@ -1,0 +1,89 @@
+<!--pages/product_detail/product_detail.wxml-->
+<import src="/pages/template/template.wxml"/>
+<!-- banner -->
+<template is="banner" data="{{banner}}" />
+
+<!-- 商品信息 -->
+<view class="product_info">
+  <view class="title-container">
+    <text class="title">{{product.title}}</text>
+    <button open-type='share' class="share-button">分享</button>
+  </view>
+  <view class="price-container">
+    <text class="rmbs">￥</text>
+    <text class="price">{{product.price}}</text>
+  </view>
+  <view class="info-bottom">
+    <text class="left">运费 ￥ 0</text>
+    <text class="middle">销量 {{product.sales}}</text>
+    <text class="right">剩余 {{product.remaining}}</text>
+  </view>
+</view>
+
+<!-- 店铺信息 -->
+<view class="shop-container">
+  <image src="{{shop.avatar}}" class="avatar"></image>
+  <text class="shopname">{{shop.shopname}}</text>
+  <text class="label">官方</text>
+  <navigator class="enter">进店</navigator>
+</view>
+
+<!-- 商品详情 -->
+<view class="product-detail-container">
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">商品详情</view>
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">成交记录</view>
+  </view>
+  <view class="product_detail" style="display:{{currentTab==0?'block':'none'}}">
+    <block wx:for="{{product.product_detail}}">
+      <image class="product-detail-img" src="{{item}}" mode="aspectFit" bindload="detailImgLoad" style="height:{{product.height}}"></image>
+    </block>
+  </view>
+  <view class="record" style="display:{{currentTab==1?'block':'none'}}">
+    <view class="th">
+      <view class="td">买家</view>
+      <view class="td">成交时间</view>
+      <view class="td">数量</view>
+    </view>
+    <block wx:for="{{record}}">
+      <view class="tr">
+        <view class="td">{{item.buyer}}</view>
+        <view class="td">{{item.time}}</view>
+        <view class="td">{{item.num}}</view>                
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<!-- 选购界面 -->
+<view class="dialog {{dialog.show_dialog?'dialog_show':''}}">
+  <view class="dialog_mask" bindtap="closeDialog" />
+  <view class="dialog_container">
+    <view class="p-row">
+      <icon bindtap="closeDialog" class="image-close" type="cancel" size="25" color="#D3B579"/>
+      <image class="image-sku" src="{{banner.imgUrls[0]}}"></image>
+      <text class="sku-title">{{product.title}}</text>
+      <text class="sku-price">￥{{product.price}}</text>
+    </view>
+    <view class="num-row">
+      <text class="buy-num">购买数量</text>
+      <text class="p-remaining">剩余{{product.remaining}}件</text>
+      <view class="quantity-position">
+          <template is="quantity" data="{{dialog}}"/>  
+      </view>
+    </view>
+    <button data-goodid="1" class="button-addCar" bindtap="addCar" formType="submit">{{dialog.confirm}}</button>
+  </view>
+</view>
+
+
+
+<!-- 底部悬浮栏 -->
+<view class="bottom-bar">
+  <view class="service">客服</view>
+  <view class="cart">购物车</view>
+  <view class="add-cart" bindtap="showDialogCart">加入购物车</view>
+  <view class="buy-now" bindtap="showDialogBuy">立即购买</view>
+</view>
+

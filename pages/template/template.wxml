@@ -1,0 +1,50 @@
+<!-- banner图 -->
+<template name='banner'>
+<view class='swiper-container'>
+    <swiper indicator-dots="{{banner.indicatorDots}}" autoplay='{{banner.autoplay}}' interval='{{banner.interval}}' duration='{{banner.duration}}' circular='{{banner.circular}}' style="height:{{banner.height}}">
+    <block wx:for="{{banner.imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  class='swiper-item' mode="aspectFit" bindload="imgLoad" style="height:{{banner.height}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+</template>
+
+<!-- 搜索框 -->
+<template name='search'>
+<view class='search-container'>
+  <form class='search-form'>
+    <icon class='search-icon' type="search" size='32rpx' color="#aaa"></icon>
+    <input type="text" placeholder="美味新零食" maxlength='20' class='search-input'></input>
+  </form>
+</view>
+</template>
+
+<!-- 热销商品展示 -->
+<template name='product'>
+<view class='product-container'>
+  <block wx:for="{{product}}">
+    <view class="product-item">
+      <navigator url="{{item.url}}">
+        <image src="{{item.img_url}}" class="product-img"></image>
+        <text class="product-text">{{item.text}}</text>
+        <text class="product-price">￥ {{item.price}}</text>
+        <view class="product-button">马上抢</view>
+      </navigator>
+    </view>
+  </block>
+</view>
+</template>
+
+<template name="quantity">
+  <!-- 主容器 -->  
+  <view class="stepper">  
+      <!-- 减号 -->  
+      <text class="{{dialog.delStatus}}" bindtap="delCount">-</text>  
+      <!-- 数值 -->  
+      <input type="number" bindchange="bindManual" value="{{dialog.quantity}}"  disabled="disabled"/>  
+      <!-- 加号 -->  
+      <text class="{{dialog.addStatus}}" bindtap="addCount">+</text>  
+  </view>  
+</template>

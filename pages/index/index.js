@@ -4,43 +4,60 @@ const app = getApp()
 
 Page({
   data:{
-    imgUrls:[
-      '../../images/O1CN011j7xYo9NFIcC7lD_!!880734502.jpg',
-      '../../images/TB2zaS7pBjTBKNjSZFwXXcG4XXa_!!902551724-0-fans.jpg',
-      '../../images/O1CN011j7xYuIeHQpqFWo_!!880734502.jpg',
-    ],
-    indicatorDots: true,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
-    circular: true,
+    banner:{
+      imgUrls: [
+        '../../images/O1CN011j7xYo9NFIcC7lD_!!880734502.jpg',
+        '../../images/TB2zaS7pBjTBKNjSZFwXXcG4XXa_!!902551724-0-fans.jpg',
+        '../../images/O1CN011j7xYuIeHQpqFWo_!!880734502.jpg',
+      ],
+      indicatorDots: true,
+      autoplay: true,
+      interval: 5000,
+      duration: 1000,
+      circular: true,
+      height:'auto',
+    },
     product:[{
-      url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-      text:'测试商品',
-      price:'18',
+        img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+        text:'测试商品',
+        price:'18',
+        url: '/pages/product_detail/product_detail'
       },
       {
-        url: '../../images/TB2zEQZvcUrBKNjSZPxXXX00pXa_!!880734502.jpg',
+        img_url: '../../images/TB2zEQZvcUrBKNjSZPxXXX00pXa_!!880734502.jpg',
         text: '测试商品',
         price: '18',
+        url: '/pages/product_detail/product_detail'
       },
       {
-        url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+        img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
         text: '测试商品',
         price: '18',
+        url: '/pages/product_detail/product_detail'
       },
       {
-        url: '../../images/TB2IQBBkH9YBuNjy0FgXXcxcXXa_!!2371566698.jpg',
+        img_url: '../../images/TB2IQBBkH9YBuNjy0FgXXcxcXXa_!!2371566698.jpg',
         text: '测试商品',
         price: '18',
+        url: '/pages/product_detail/product_detail'
       },
       {
-        url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+        img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
         text: '测试商品',
         price: '18',
+        url: '/pages/product_detail/product_detail'
       },
     ]
-  }
+  },
+  imgLoad: function (e) {
+    var ww = wx.getSystemInfoSync().windowWidth,
+        iw = e.detail.width,
+        ih = e.detail.height,
+        bh = ww / (iw / ih)
+    this.setData({
+      ['banner.height']:String(bh) + 'px'
+    })
+  },
 })
 
 

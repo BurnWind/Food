@@ -1,0 +1,310 @@
+/* pages/product_detail/product_detail.wxss */
+@import "/pages/template/template.wxss";
+page{
+  background: #f8f8f8;
+}
+
+/* 商品信息 */
+.product_info{
+  width:100%;
+  background-color: #fff;
+}
+.title-container{
+  display:flex;
+}
+.title{
+  display:inline-block;
+  color:#000;
+  font-size:32rpx;
+  width:85%;
+  height:130rpx;
+  line-height: 45rpx;
+  box-sizing: border-box;
+  padding:20rpx;
+  font-weight: bold;
+}
+.share-button{
+  display:inline-block;
+  width:15%;
+  height:130rpx;
+  font-size:20rpx;
+  color:#666;
+}
+.price-container{
+  margin-top:10rpx;
+}
+.rmbs{
+  padding:20rpx;
+  color:#f00;
+  font-size:24rpx;
+}
+.price{
+  color:#f00;
+}
+.info-bottom{
+  box-sizing: border-box;
+  margin-top:20rpx;
+  padding:20rpx;
+  width:100%;
+  height:90rpx;
+  border-top:1px solid #eee;
+  color:#666;
+  font-size:24rpx;
+  line-height: 50rpx;
+}
+.left{
+  float:left;
+}
+.middle{
+  float:left;
+  margin-left: 5rem;
+}
+.right{
+  float:right;
+}
+
+/* 店铺信息 */
+.shop-container{
+  width:100%;
+  height:120rpx;
+  background-color: #fff;
+  margin-top:20rpx;
+  position: relative;
+}
+.avatar{
+  width:100rpx;
+  height:100rpx;
+  display:inline-block;
+  margin:10rpx;
+}
+.shopname{
+  position: absolute;
+  display: block;
+  top:10rpx;
+  left:120rpx;
+  color:#000;
+  font-size:28rpx;
+}
+.label{
+  position: absolute;
+  display: block;
+  top:70rpx;
+  left:120rpx;
+  color:#fff;
+  background-color: #D3B579;
+  font-size:24rpx;
+  width:80rpx;
+  height:40rpx;
+  line-height: 40rpx;
+  border-radius: 8rpx;
+  text-align: center;
+}
+.enter{
+  display:block;
+  position: absolute;
+  top:50%;
+  margin-top:-20rpx;
+  right:20rpx;
+  width:80rpx;
+  height:40rpx;
+  line-height: 40rpx;
+  color:#D3B579;
+  border:1px solid #D3B579;
+  border-radius:20rpx;
+  font-size:24rpx;
+  text-align: center;
+}
+
+/* 选项卡 */
+.product-container{
+  width:100%;
+  margin-top:20rpx;
+  background-color: #fff;
+}
+.swiper-tab{
+  width:100%;
+  margin-bottom:20rpx;
+}
+.swiper-tab-item{
+  width:30%;
+  display:inline-block;
+  height:80rpx;
+  box-sizing: border-box;
+  padding:20rpx;
+  margin:0 10%;
+  color:#000;
+  font-size:28rpx;
+  text-align: center;
+}
+.active{
+  color:#D3B579;
+  border-bottom:5rpx solid #D3B579;
+}
+/* 商品详情图片 */
+.product-detail-img{
+  width:100%;
+  height:auto;
+}
+/* 成交记录 */
+.record{
+  width:100%;
+}
+.th{
+  background-color:#eee;
+  color:#000;
+  font-size:24rpx;
+  border-bottom:1px solid #e8e8e8;
+  height:50rpx;
+  line-height: 50rpx;
+}
+.tr{
+  background-color:#fff;
+  color:#000;
+  font-size:24rpx;
+  border-bottom:1px solid #e8e8e8;
+  height:50rpx;
+  line-height: 50rpx;
+}
+.td{
+  display:inline-block;
+  width:33.3%;
+  text-align:center;
+}
+
+/* 底部悬浮栏 */
+.bottom-bar{
+  position:fixed;
+  width:100%;
+  bottom:0;
+  height:100rpx;
+}
+.service,.cart{
+  display:inline-block;
+  width:15%;
+  height:100%;
+  text-align: center;
+  background-color: #fff;
+  color:#000;
+  font-size:24rpx;
+  line-height: 100rpx;
+}
+.add-cart,.buy-now{
+  display:inline-block;
+  width:35%;
+  height:100%;
+  line-height: 100rpx;
+  font-size:32rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.add-cart{
+  color:#fff;
+  background-color: #000;
+}
+.buy-now{
+  color:#000;
+  background-color: #D3B579;
+}
+
+/* 选项框 */
+.dialog{
+  width:100%;
+  height:100%;
+  display:none;
+  position: fixed;
+  z-index: 1000;
+  top:0;
+  left: 0;
+}
+.dialog_show{
+  display:block;
+}
+.dialog_mask{
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,.5);
+}
+.dialog_container{
+  width:100%;
+  height:350rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom:0;
+}
+.p-row{
+  width:100%;
+  height:40%;
+  position: relative;
+  border-bottom: 1px solid #f8f8f8;
+}
+.image-close{
+  display: block;
+  position: absolute;
+  top:20rpx;
+  right:20rpx;
+}
+.image-sku{
+  position: absolute;
+  top:-20rpx;
+  left: 30rpx;
+  width:150rpx;
+  height:150rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #f8f8f8;
+}
+.sku-title{
+  display: block;
+  position: absolute;
+  top:20rpx;
+  left:200rpx;
+  width:65%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height:50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+}
+.sku-price{
+  position: absolute;
+  bottom:30rpx;
+  left:200rpx;
+  display: block;
+  font-size: 30rpx;
+  color:#D3B579;
+}
+.num-row{
+  width:100%;
+  height:35%;
+  background-color: #fff;
+  position: relative;
+  box-sizing: border-box;
+  padding:20rpx 30rpx;
+}
+.buy-num{
+  font-size:30rpx;
+}
+.p-remaining{
+  position: absolute;
+  left:30rpx;
+  bottom:20rpx;
+  font-size:24rpx;
+  color:#aaa;
+}
+.quantity-position{
+  position: absolute;
+  right: 30rpx;
+  top:30rpx;
+}
+
+.button-addCar{
+  width:100%;
+  height:25%;
+  background-color: #D3B579;
+  font-size:30rpx;
+  color:#fff;
+  border-radius: 0;
+}
+.button-addCar::after{
+  border:none;
+}

@@ -5,7 +5,9 @@
     "pages/classification/classification",
     "pages/cart/cart",
     "pages/my/my",
-    "pages/add_address/add_address"
+    "pages/add_address/add_address",
+    "pages/product_detail/product_detail",
+    "pages/order/order"
   ],
   "window":{
     "backgroundTextStyle":"light",
