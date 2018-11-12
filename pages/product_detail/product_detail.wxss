@@ -1,5 +1,6 @@
 /* pages/product_detail/product_detail.wxss */
 @import "/pages/template/template.wxss";
+@import "/pages/icon/icon.wxss";
 page{
   background: #f8f8f8;
 }
@@ -24,11 +25,23 @@ page{
   font-weight: bold;
 }
 .share-button{
-  display:inline-block;
+  display:flex;
+  flex-direction: column;
   width:15%;
   height:130rpx;
   font-size:20rpx;
   color:#666;
+  background-color: transparent;
+  border-radius:none;
+}
+.share-button:after{
+  border:none;
+}
+.icon-fenxiang{
+  font-size: 60rpx;
+  color:#D3B579;
+  line-height: 60rpx;
+  padding-top: 10rpx;
 }
 .price-container{
   margin-top:10rpx;
@@ -116,10 +129,11 @@ page{
 }
 
 /* 选项卡 */
-.product-container{
+.product-detail-container{
   width:100%;
   margin-top:20rpx;
   background-color: #fff;
+  margin-bottom:100rpx;
 }
 .swiper-tab{
   width:100%;
@@ -177,16 +191,24 @@ page{
   width:100%;
   bottom:0;
   height:100rpx;
+  background-color: #fff;
 }
 .service,.cart{
-  display:inline-block;
+  position: relative;
+  top:-15rpx;
+  display:inline-flex;
+  flex-direction: column;
   width:15%;
   height:100%;
   text-align: center;
   background-color: #fff;
-  color:#000;
+  color:#333;
   font-size:24rpx;
-  line-height: 100rpx;
+}
+.icon-kefu,.icon-gouwuchekong{
+  font-size:36rpx;
+  line-height: 50rpx;
+  padding-top: 10rpx;
 }
 .add-cart,.buy-now{
   display:inline-block;
@@ -304,6 +326,8 @@ page{
   font-size:30rpx;
   color:#fff;
   border-radius: 0;
+  text-align: center;
+  line-height: 300%;
 }
 .button-addCar::after{
   border:none;

@@ -1,0 +1,2 @@
+/* pages/address_choose/address_choose.wxss */
+@import "/pages/address_list/address_list.wxss"

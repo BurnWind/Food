@@ -1,0 +1,15 @@
+<!--pages/address_list/address_list.wxml-->
+<view class="recive-container">
+  <block wx:for="{{recive}}">
+    <view class="recive-item">
+      <text class="recive-name">{{item.name}}</text>
+      <text class="recive-phone">{{item.phone}}</text>
+      <text class="recive-address">{{item.address}}</text>
+      <navigator class="recive-edit">编辑</navigator>
+    </view>
+  </block>
+</view>
+
+<view class="bottom-container">
+  <navigator class="new-recive" url="/pages/add_address/add_address">+新建地址</navigator>
+</view>

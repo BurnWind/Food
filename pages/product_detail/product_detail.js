@@ -57,7 +57,7 @@ Page({
       delStatus: 'disabled',
       addStatus: 'normal',
       quantity: 1,
-      confirm:'加入购物车',
+      dtype:'addCart',
     },
   },
   imgLoad: function (e) {
@@ -116,13 +116,13 @@ Page({
   showDialogCart:function(e){
     this.setData({
       ['dialog.show_dialog']:true,
-      ['dialog.confirm']:'加入购物车',
+      ['dialog.dtype']:'addCart',
     })
   },
   showDialogBuy: function (e) {
     this.setData({
       ['dialog.show_dialog']: true,
-      ['dialog.confirm']: '立即购买'
+      ['dialog.dtype']: 'buyNow'
     })
   },
   closeDialog:function(e){
