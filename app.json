@@ -7,7 +7,10 @@
     "pages/my/my",
     "pages/add_address/add_address",
     "pages/product_detail/product_detail",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/order_make/order_make",
+    "pages/address_list/address_list",
+    "pages/address_choose/address_choose"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -17,24 +20,32 @@
   },
   "tabBar":{
     "color":"#000",
-    "selectColor":"#D3B579",
+    "selectedColor":"#D3B579",
     "backgroundColor":"#fff",
     "list":[
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "/images/icon/shouye.png",
+        "selectedIconPath": "/images/icon/select-shouye.png"
       },
       {
         "pagePath":"pages/classification/classification",
-        "text":"分类"
+        "text":"分类",
+        "iconPath": "/images/icon/icon-.png",
+        "selectedIconPath": "/images/icon/select-icon-.png"
       },
       {
         "pagePath":"pages/cart/cart",
-        "text":"购物车"
+        "text":"购物车",
+        "iconPath": "/images/icon/gouwuche.png",
+        "selectedIconPath": "/images/icon/select-gouwuche.png"
       },
       {
         "pagePath":"pages/my/my",
-        "text":"我的"
+        "text":"我的",
+        "iconPath": "/images/icon/wode.png",
+        "selectedIconPath": "/images/icon/select-wode.png"
       }
     ]
   }

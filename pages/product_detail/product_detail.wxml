@@ -7,7 +7,10 @@
 <view class="product_info">
   <view class="title-container">
     <text class="title">{{product.title}}</text>
-    <button open-type='share' class="share-button">分享</button>
+    <button open-type='share' class="share-button">
+      <text class="iconfont icon-fenxiang"></text>
+      <text>分享</text>
+    </button>
   </view>
   <view class="price-container">
     <text class="rmbs">￥</text>
@@ -73,7 +76,12 @@
           <template is="quantity" data="{{dialog}}"/>  
       </view>
     </view>
-    <button data-goodid="1" class="button-addCar" bindtap="addCar" formType="submit">{{dialog.confirm}}</button>
+    <block wx:if="{{dialog.dtype=='addCart'}}">
+      <button data-goodid="1" class="button-addCar" bindtap="addCar" formType="submit">加入购物车</button>
+    </block>
+    <block wx:else>
+      <navigator class="button-addCar" url="/pages/order_make/order_make">立即购买</navigator>
+    </block>
   </view>
 </view>
 
@@ -81,8 +89,14 @@
 
 <!-- 底部悬浮栏 -->
 <view class="bottom-bar">
-  <view class="service">客服</view>
-  <navigator class="cart" url="/pages/cart/cart" open-type="switchTab">购物车</navigator>
+  <view class="service">
+    <text class="iconfont icon-kefu"></text>
+    <text>客服</text>
+  </view>
+  <navigator class="cart" url="/pages/cart/cart" open-type="switchTab">
+    <text class="iconfont icon-gouwuchekong"></text>
+    <text>购物车</text>
+  </navigator>
   <view class="add-cart" bindtap="showDialogCart">加入购物车</view>
   <view class="buy-now" bindtap="showDialogBuy">立即购买</view>
 </view>

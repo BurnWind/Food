@@ -9,6 +9,7 @@
     <button class="login">登录</button>
   </view>
   <navigator class="order_bar" url="/pages/order/order">
+    <text class="iconfont icon-order_icon"></text>
     <text class="myorder">我的订单</text>
     <text class="navigator-arrow"></text>
     <text class="allorder">查看全部订单</text>
@@ -31,11 +32,13 @@
       <text class="icon_text">已完成</text>
     </view>
   </view>
-  <navigator class="address" url="/pages/add_address/add_address" >
+  <navigator class="address" url="/pages/address_list/address_list" >
+    <text class="iconfont icon-weibiaoti2fuzhi08"></text>
     <text>收货地址</text>
     <text class="navigator-arrow"></text>
   </navigator> 
   <navigator class="shopping_cart" url="/pages/cart/cart" open-type="switchTab">
+    <text class="iconfont icon-gouwuchekong"></text>
     <text space="emsp">购物车 </text>
     <text class="navigator-arrow"></text>
   </navigator>

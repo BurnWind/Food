@@ -14,7 +14,7 @@
           <checkbox color="white" checked="{{item.kind_checked}}" value="{{s_index}}"></checkbox>
         </checkbox-group>
         <text class="title">{{item.name}}</text>
-        <block wx:if="{{index==0}}">
+        <block wx:if="{{s_index==0}}">
           <button class="btn_edit" bindtap="editpress">{{edit}}</button>
         </block>
       </view>

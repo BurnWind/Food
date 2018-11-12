@@ -420,4 +420,4 @@ Page({
   onShareAppMessage: function () {
 
   }
-})
+  })

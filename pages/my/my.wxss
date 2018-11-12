@@ -60,9 +60,10 @@ page{
   font-size: 32rpx;
   background-color: white;
   margin-top: 30rpx;
+  padding-left: 1rem;
+  box-sizing: border-box;
 }
 .myorder{
-  margin-left: 1rem;
   line-height: 3rem;
 }
 .allorder{
@@ -123,7 +124,10 @@ page{
   line-height: 110rpx;
   padding-left: 1rem;
 }
-
+.order_bar>.iconfont,.address>.iconfont,.shopping_cart>.iconfont{
+  font-size:40rpx;
+  margin-right: 20rpx;
+}
 
 
 

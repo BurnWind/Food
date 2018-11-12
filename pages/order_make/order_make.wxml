@@ -1,0 +1,57 @@
+<!--pages/order_make/order_make.wxml-->
+<!-- 收货地址栏 -->
+<navigator class="receive">
+  <text class="iconfont icon-weibiaoti2fuzhi08"></text>
+  <text class="receive-name">收货人: {{receive.name}}</text>
+  <text class="receive-phone">{{receive.phone}}</text>
+  <text class="receive-address">{{receive.address}}</text>
+  <text class="navigator-arrow"></text>
+</navigator>
+<!-- 订单主体 -->
+<view class="order-container">
+  <block wx:for="{{order}}">
+    <view class="order-item">
+      <view class="order-top">
+        <text class="stop">{{item.stop}}</text>
+      </view>
+      <view class="order-middle">
+        <block wx:for="{{item.products}}">
+          <view class="order-product">
+            <image class="product-img" src="{{item.img}}"></image>
+            <text class="product-title">{{item.title}}</text>
+            <text class="product-price">￥ {{item.price}}</text>
+            <text class="product-num">x{{item.num}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <view class="order-bottom">
+    <view class="order-bottom-item distribution">
+      <text class="order-bottom-item-left">配送方式</text>
+      <text class="order-bottom-item-right">免运费\n普通快递</text>
+    </view>
+    <view class="order-bottom-item">
+      <text class="order-bottom-item-left">合计</text>
+      <text class="order-bottom-item-right total-price">￥{{total}}</text>
+    </view>
+    <view class="order-bottom-item offer">
+      <text class="order-bottom-item-left">优惠</text>
+      <text class="order-bottom-item-right">暂无可用</text>
+    </view>
+    <view class="order-bottom-item">
+      <text class="order-bottom-item-left">商品金额</text>
+      <text class="order-bottom-item-right">￥{{total}}</text>
+    </view>
+    <view class="order-bottom-item">
+      <text class="order-bottom-item-left">运费</text>
+      <text class="order-bottom-item-right">+￥0.00</text>
+    </view>
+  </view>
+</view>
+
+<!-- 底部悬浮栏 -->
+<view class="bottom-bar">
+  <view class="total"><text>合计：</text><text class="total-price">￥{{total}}</text></view>
+  <view class="buy-now" bindtap="showDialogBuy">提交订单</view>
+</view>
