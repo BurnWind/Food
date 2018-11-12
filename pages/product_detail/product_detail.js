@@ -130,6 +130,14 @@ Page({
       ['dialog.show_dialog']: false,
     })
   },
+  // 加入购物车
+  addCar: function(){
+    wx.showToast({
+      title: '加入购物车成功',
+      icon: "success",
+      duration: 1000
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
