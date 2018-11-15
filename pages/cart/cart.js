@@ -366,11 +366,45 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 检查登录状态
+    wx.checkSession({
+      success() {
+        //session_key 未过期，并且在本生命周期一直有效
+        
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        //重新登录
+        wx.login({
+          success: function (res) {
+            if (res.code) {
+              wx.request({
+                url: 'http://127.0.0.1:5000/customer_login',
+                data: {
+                  code: res.code
+                },
+                success: function (data) {
+                },
+              })
+            }
+          },
+        }) 
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    // 从后台获取购物车数据
+    // wx.request({
+    //   url: 'http://127.0.0.1:5000/get_cart',
+    //   success :function(data){
+    //     console.log(data)
+    //   }
+    // })
+
+
     // 判断购物车是否有商品，然后显示页面
     if(this.data.product.length>0){
       this.setData({
