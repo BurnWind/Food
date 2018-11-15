@@ -1,4 +1,4 @@
-//app.js
+// app.js
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -8,8 +8,14 @@ App({
 
     // 登录
     wx.login({
-      success: res => {
+      success: function(res) {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'https://127.0.0.1:5000/get_customer',
+          data: {
+            code: res.code
+          }
+        })
       }
     })
     // 获取用户信息

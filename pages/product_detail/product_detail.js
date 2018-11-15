@@ -5,11 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: 0,
     banner: {
       imgUrls: [
-        '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
-        '../../images/O1CN0124xLvmXYlKOcXaJ_!!1657487457.jpg_430x430q90.jpg',
-        '../../images/TB2rbK1foF7MKJjSZFLXXcMBVXa_!!1657487457.jpg_430x430q90.jpg',
+        // '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
       ],
       indicatorDots: true,
       autoplay: true,
@@ -24,9 +23,7 @@ Page({
       sales:1672,
       remaining:100,
       product_detail:[
-        '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
-        '../../images/O1CN0124xLvmXYlKOcXaJ_!!1657487457.jpg_430x430q90.jpg',
-        '../../images/TB2rbK1foF7MKJjSZFLXXcMBVXa_!!1657487457.jpg_430x430q90.jpg',
+        // '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
       ],
       height:'auto'
     },
@@ -36,21 +33,11 @@ Page({
     },
     currentTab:0,
     record:[
-      {
-        buyer:'xxx',
-        time:'11-09 14:25:14',
-        num:'2'
-      },
-      {
-        buyer: 'xxx',
-        time: '11-09 14:25:14',
-        num: '2'
-      },
-      {
-        buyer: 'xxx',
-        time: '11-09 14:25:14',
-        num: '2'
-      },
+      // {
+      //   buyer:'xxx',
+      //   time:'11-09 14:25:14',
+      //   num:'2'
+      // },
     ],
     dialog:{
       show_dialog: false,
@@ -132,6 +119,9 @@ Page({
   },
   // 加入购物车
   addCar: function(){
+    wx.request({
+      url: 'http://127.0.0.1:5000/add_cart',
+    })
     wx.showToast({
       title: '加入购物车成功',
       icon: "success",
@@ -142,14 +132,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      this.setData({
+        id: options.id
+      })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this
+    wx.request({
+      url: "http://176.122.11.85:5000/product_detail?id="+that.data.id,
+      success: function(res){
+        console.log(res)
+        that.setData({
+          ["banner.imgUrls"]: res.data.imgUrls,
+          shop: res.data.shop,
+          record: res.data.record,
+          product: res.data.product
+        })
+      }
+    })
   },
 
   /**

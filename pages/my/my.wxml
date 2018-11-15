@@ -1,8 +1,14 @@
 <!--my.wxml-->
 <view class="container">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <block wx:if="{{hasUserInfo}}">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <block wx:else>
+      <image class="userinfo-avatar" class="userinfo-avatar" src="/images/icon/default.png"></image>
+      <button class="userinfo-nickname userinfo-none" bindtap="bindGetUserInfo">点击显示微信头像</button>
+    </block>
   </view>
   <view class="login_bar">
     <text class="login_text">登录手机号,同步全渠道订单和优惠券</text>

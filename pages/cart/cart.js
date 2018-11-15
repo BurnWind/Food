@@ -110,8 +110,8 @@ Page({
       }
       that.data.selected = []
       for (let i = 0; i < that.data.store.length; i++) {
-          that.data.store[i].kind_checked = true
-          that.data.selected[i] = []
+        that.data.store[i].kind_checked = true
+        that.data.selected[i] = []
         for (let j = 0; j < that.data.product.length; j++) {
           if(that.data.product[j].store_id==i){
             that.data.selected[i].push(j.toString())
@@ -317,7 +317,10 @@ Page({
   // 删除购物车商品
   delete: function(){
     var that = this
-    var num = this.data.selected.length
+    var num = 0
+    for(let i = 0; i < this.data.selected.length; i++){
+      num += that.data.selected[i].length
+    }
     if(num==0){
       wx.showToast({
         title: '你还没选择商品哦',
@@ -331,7 +334,6 @@ Page({
       confirmColor: "#D3B579",
       success: function(sm){
         if(sm.confirm){
-          // console.log(Page.data.product)
           for (let i = 0; i < that.data.selected.length; i++) {
             that.data.product.splice(i, 1)
           }
