@@ -301,7 +301,7 @@ Page({
   delete: function(){
     var that = this
     var num = 0
-    for(let i=0;i<this.data.selected.length;i++){
+    for(let i = 0; i < this.data.selected.length; i++){
       num += that.data.selected[i].length
     }
     if(num==0){
@@ -317,7 +317,6 @@ Page({
       confirmColor: "#D3B579",
       success: function(sm){
         if(sm.confirm){
-          console.log(that.data.selected)
           var pid = []
           for (let i = 0; i < that.data.selected.length; i++) {
             for (let j=0;j<that.data.selected[i].length;j++){
