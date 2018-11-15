@@ -32,7 +32,7 @@ Page({
         index: 5,
       }
     ],
-    num:0,
+    num:1,
     product: [{
       img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
       text: '测试商品',
@@ -66,8 +66,25 @@ Page({
     ]
   },
   select:function(e){
-    this.setData({
-      num:e.target.dataset.index
+    var that = this
+    if(e != 1){
+      that.setData({
+        num: e.target.dataset.index
+      })
+    }else{
+      that.setData({
+        num: e
+      })
+    }
+    
+    wx.request({
+      url: 'http://127.0.0.1:5000/classify/get_products/' + that.data.num,
+      success: function(data){
+        console.log(data)
+        that.setData({
+          product:data.data
+        })
+      }
     })
   },
 
@@ -82,7 +99,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this
+    wx.request({
+      url: 'http://127.0.0.1:5000/classification',
+      success: function(data){
+        that.setData({
+          classify:data.data
+        })
+      }
+    })
+    that.select(1)
   },
 
   /**

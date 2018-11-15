@@ -1,12 +1,12 @@
 <!--pages/order_make/order_make.wxml-->
 <!-- 收货地址栏 -->
-<navigator class="receive">
+<view class="receive" bindtap='chooseAdd'>
   <text class="iconfont icon-weibiaoti2fuzhi08"></text>
   <text class="receive-name">收货人: {{receive.name}}</text>
   <text class="receive-phone">{{receive.phone}}</text>
   <text class="receive-address">{{receive.address}}</text>
   <text class="navigator-arrow"></text>
-</navigator>
+</view>
 <!-- 订单主体 -->
 <view class="order-container">
   <block wx:for="{{order}}">
