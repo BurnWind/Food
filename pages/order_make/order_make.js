@@ -60,7 +60,19 @@ Page({
     ],
     total:0
   },
-
+  chooseAdd:function(){
+    var that = this
+    wx.chooseAddress({
+      success(res) {
+        that.data.receive.name = res.userName
+        that.data.receive.phone = res.telNumber
+        that.data.receive.address = res.provinceName + res.cityName + res.countyName + res.detailInfo
+        that.setData({
+          receive: that.data.receive
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

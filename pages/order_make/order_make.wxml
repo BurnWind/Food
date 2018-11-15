@@ -1,6 +1,6 @@
 <!--pages/order_make/order_make.wxml-->
 <!-- 收货地址栏 -->
-<view class="receive">
+<view class="receive" bindtap='chooseAdd'>
   <text class="iconfont icon-weibiaoti2fuzhi08"></text>
   <text class="receive-name">收货人: {{receive.name}}</text>
   <text class="receive-phone">{{receive.phone}}</text>
