@@ -113,10 +113,7 @@ Page({
       that.data.selected = []
       for (let i = 0; i < that.data.store.length; i++) {
         that.data.store[i].kind_checked = true
-<<<<<<< HEAD
-=======
         var store_id = that.data.store[i].store_id
->>>>>>> lxt
         that.data.selected[i] = []
         for (let j = 0; j < that.data.product.length; j++) {
           if(that.data.product[j].store_id==store_id){
@@ -304,11 +301,7 @@ Page({
   delete: function(){
     var that = this
     var num = 0
-<<<<<<< HEAD
     for(let i = 0; i < this.data.selected.length; i++){
-=======
-    for(let i=0;i<this.data.selected.length;i++){
->>>>>>> lxt
       num += that.data.selected[i].length
     }
     if(num==0){
@@ -324,11 +317,7 @@ Page({
       confirmColor: "#D3B579",
       success: function(sm){
         if(sm.confirm){
-<<<<<<< HEAD
-=======
-          console.log(that.data.selected)
           var pid = []
->>>>>>> lxt
           for (let i = 0; i < that.data.selected.length; i++) {
             for (let j=0;j<that.data.selected[i].length;j++){
               pid.push(parseInt(that.data.selected[i][j]))
