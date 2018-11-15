@@ -57,7 +57,7 @@ Page({
       delStatus: 'disabled',
       addStatus: 'normal',
       quantity: 1,
-      dtype:'addCart',
+      dtype: 'addCart',
     },
   },
   imgLoad: function (e) {
@@ -116,7 +116,7 @@ Page({
   showDialogCart:function(e){
     this.setData({
       ['dialog.show_dialog']:true,
-      ['dialog.dtype']:'addCart',
+      ['dialog.dtype']: 'addCart',
     })
   },
   showDialogBuy: function (e) {
@@ -128,6 +128,14 @@ Page({
   closeDialog:function(e){
     this.setData({
       ['dialog.show_dialog']: false,
+    })
+  },
+  // 加入购物车
+  addCar: function(){
+    wx.showToast({
+      title: '加入购物车成功',
+      icon: "success",
+      duration: 1000
     })
   },
   /**
@@ -185,4 +193,4 @@ Page({
   onShareAppMessage: function () {
 
   }
-})
+  })

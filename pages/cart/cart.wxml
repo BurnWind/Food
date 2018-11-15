@@ -6,33 +6,45 @@
     <view class="text_b">快给我挑点宝贝</view>
     <navigator class="text_c" url="/pages/index/index" open-type="switchTab">去逛逛</navigator>
   </block>
-<!-- 购物车不空时 -->
-  <block wx:else>
-    <view class="head">
-      <checkbox-group bindchange="checkboxChange">  
-        <checkbox color="white" checked="{{checked}}"></checkbox>
-      </checkbox-group>
-      <text class="title">好好吃零食店</text>
-      <button class="btn_edit" bindtap="editpress">{{edit}}</button>
-    </view>
-<!-- 购物车商品展示 -->
-    <view class="food_bar">
-    <checkbox-group bindchange="product_checkboxChange">
-      <block wx:for="{{product}}">
-        <view class="content">
-          
-            <checkbox class="chk_content" color="white" checked="{{item.product_checked}}" value="{{index}}"></checkbox>
-         
-          <image src="{{item.url}}" class="product-img"></image>
-          <view class="product_info">
-            <text class="product_text">测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述</text>
-            <text class="product_price">￥18</text>
-            <text class="product_num">X1</text>
-          </view>
-        </view>
-      </block>
-    </checkbox-group>
-    </view>
+  <!-- 购物车不空时 -->
+  <view wx:else class="allfood_bar">
+    <block wx:for="{{store}}" wx:for-index="s_index">
+      <view class="head" >
+        <checkbox-group bindchange="store_checkboxChange" data-index="{{s_index}}">  
+          <checkbox color="white" checked="{{item.kind_checked}}" value="{{s_index}}"></checkbox>
+        </checkbox-group>
+        <text class="title">{{item.name}}</text>
+        <block wx:if="{{s_index==0}}">
+          <button class="btn_edit" bindtap="editpress">{{edit}}</button>
+        </block>
+      </view>
+    <!-- 购物车商品展示 -->
+      <view class="food_bar">
+        <checkbox-group bindchange="product_checkboxChange" data-index="{{s_index}}">
+          <block wx:for="{{product}}" wx:for-index="p_index">
+            <block wx:if="{{s_index==item.store_id}}">
+              <view class="content">
+                <checkbox class="chk_content" color="white" checked="{{item.product_checked}}" value="{{p_index}}"></checkbox>
+                <image src="{{item.url}}" class="product-img"></image>
+                <view class="product_info">
+                  <text class="product_text">测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述</text>
+                  <text class="product_price">￥{{item.price}}</text>
+                  <!-- 主容器 -->  
+                  <view class="stepper">  
+                      <!-- 减号 -->  
+                      <text class="{{item.delStatus}}" bindtap="delCount" data-index="{{p_index}}">-</text>  
+                      <!-- 数值 -->  
+                      <input type="number" bindchange="bindManual" value="{{item.quantity}}"  disabled="disabled"/>  
+                      <!-- 加号 -->  
+                      <text class="{{item.addStatus}}" bindtap="addCount" data-index="{{p_index}}">+</text>  
+                  </view> 
+                </view>
+              </view>
+            </block>
+          </block>
+        </checkbox-group>
+      </view>
+    </block>
 <!-- 底部结算栏 -->
     <view class="bottom">
       <checkbox-group bindchange="checkboxChange">
@@ -42,12 +54,12 @@
       <block wx:if="{{editbool}}">
         <text class="text_2">合计:</text>
         <view class="text_3">
-          <text class="total_price">￥18.80</text>
+          <text class="total_price">￥{{total}}</text>
           <text class="text_4">不含运费</text>
         </view>
-        <button class="btn_bottom">结算</button>
+        <button class="btn_bottom" bindtap="account">结算</button>
       </block>
-      <button wx:else class="btn_bottom">删除</button>
+      <button wx:else class="btn_bottom" bindtap="delete">删除</button>
     </view>
-  </block>
+  </view>
 </view>
