@@ -8,12 +8,12 @@
   </block>
   <!-- 购物车不空时 -->
   <view wx:else class="allfood_bar">
-    <block wx:for="{{store}}" wx:for-index="s_index">
+    <block wx:for="{{store}}" wx:for-index="s_index" wx:for-item="seller">
       <view class="head" >
         <checkbox-group bindchange="store_checkboxChange" data-index="{{s_index}}">  
-          <checkbox color="white" checked="{{item.kind_checked}}" value="{{s_index}}"></checkbox>
+          <checkbox color="white" checked="{{seller.kind_checked}}" value="{{s_index}}"></checkbox>
         </checkbox-group>
-        <text class="title">{{item.name}}</text>
+        <text class="title">{{seller.name}}</text>
         <block wx:if="{{s_index==0}}">
           <button class="btn_edit" bindtap="editpress">{{edit}}</button>
         </block>
@@ -22,9 +22,9 @@
       <view class="food_bar">
         <checkbox-group bindchange="product_checkboxChange" data-index="{{s_index}}">
           <block wx:for="{{product}}" wx:for-index="p_index">
-            <block wx:if="{{s_index==item.store_id}}">
+            <block wx:if="{{seller.store_id==item.store_id}}">
               <view class="content">
-                <checkbox class="chk_content" color="white" checked="{{item.product_checked}}" value="{{p_index}}"></checkbox>
+                <checkbox class="chk_content" color="white" checked="{{item.product_checked}}" value="{{item.id}}"></checkbox>
                 <image src="{{item.url}}" class="product-img"></image>
                 <view class="product_info">
                   <text class="product_text">测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述</text>
