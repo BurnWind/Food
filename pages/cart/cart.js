@@ -1,4 +1,6 @@
 // pages/cart/cart.js
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -29,66 +31,18 @@ Page({
       ],
     // 商品
     product: [
-    { 
-      id: 4,
-      store_id: 3,
-      url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-      text: '测试商品',
-      price: '10',
-      remaining: 10,
-      product_checked: true,
-      delStatus: 'disabled',
-      addStatus: 'normal',
-      quantity: 1,
-    },
-    {
-      id: 2,
-      store_id: 3,
-      url: '../../images/TB2zEQZvcUrBKNjSZPxXXX00pXa_!!880734502.jpg',
-      text: '测试商品',
-      price: '20',
-      remaining: 100,
-      product_checked: true,
-      delStatus: 'disabled',
-      addStatus: 'normal',
-      quantity: 2,
-    },
-    {
-      id: 10,
-      store_id: 5,
-      url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-      text: '测试商品',
-      price: '30',
-      remaining: 100,
-      product_checked: true,
-      delStatus: 'disabled',
-      addStatus: 'normal',
-      quantity: 3,
-    },
-    {
-      id: 7,
-      store_id: 3,
-      url: '../../images/TB2IQBBkH9YBuNjy0FgXXcxcXXa_!!2371566698.jpg',
-      text: '测试商品',
-      price: '40',
-      remaining: 100,
-      product_checked: true,
-      delStatus: 'disabled',
-      addStatus: 'normal',
-      quantity: 4,
-    },
-    {
-      id: 8,
-      store_id: 5,
-      url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-      text: '测试商品',
-      price: '50',
-      remaining: 100,
-      product_checked: true,
-      delStatus: 'disabled',
-      addStatus: 'normal',
-      quantity: 5,
-    },
+    // { 
+    //   id: 4,
+    //   store_id: 3,
+    //   url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+    //   text: '测试商品',
+    //   price: '10',
+    //   remaining: 10,
+    //   product_checked: true,
+    //   delStatus: 'disabled',
+    //   addStatus: 'normal',
+    //   quantity: 1,
+    // },
     ],
     // 哪几项商品被选择
     selected: []
@@ -326,7 +280,7 @@ Page({
           }
           console.log(pid)
           wx.request({
-            url: 'http://127.0.0.1:5000/delete_cart',
+            url: 'https://176.122.11.85:5000/customer_login',
             header: { 'content-type': 'application/x-www-form-urlencoded' },
             data:{
               'pid':JSON.stringify(pid)
@@ -385,28 +339,27 @@ Page({
    */
   onLoad: function (options) {
     // 检查登录状态
-    wx.checkSession({
-      success() {
-        //session_key 未过期，并且在本生命周期一直有效
-        
-      },
-      fail() {
-        // session_key 已经失效，需要重新执行登录流程
-        //重新登录
-        wx.login({
-          success: function (res) {
-            if (res.code) {
-              wx.request({
-                url: 'http://127.0.0.1:5000/customer_login',
-                data: {
-                  code: res.code
-                },
-                success: function (data) {
-                },
-              })
-            }
-          },
-        }) 
+    if (!wx.getStorageSync('token')){
+      app.indexlogin()
+    }
+  },
+  getcart: function(){
+    var that = this
+    wx.request({
+      url: 'http://176.122.11.85:5000/get_cart',
+      data: { 'token': wx.getStorageSync('token') },
+      success: function (data) {
+        if(data.statusCode==403){   
+          app.indexlogin()      
+          setTimeout(function(){
+            that.getcart()
+          },2000)     
+        }else{
+          that.setData({
+            product: data.data.product,
+            store: data.data.store
+          })
+        }
       }
     })
   },
@@ -415,15 +368,7 @@ Page({
    */
   onReady: function () {
     // 从后台获取购物车数据
-    // wx.request({
-    //   url: 'http://127.0.0.1:5000/get_cart',
-    //   success :function(data){
-    //     console.log(data)
-
-    //   }
-    // })
-
-
+    this.getcart()
     // 判断购物车是否有商品，然后显示页面
     if(this.data.product.length>0){
       this.setData({
