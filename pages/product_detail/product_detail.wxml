@@ -80,7 +80,7 @@
       <button data-goodid="1" class="button-addCar" bindtap="addCar" formType="submit">加入购物车</button>
     </block>
     <block wx:else>
-      <navigator class="button-addCar" url="/pages/order_make/order_make">立即购买</navigator>
+      <view class="button-addCar" bindtap="buyNow">立即购买</view>
     </block>
   </view>
 </view>

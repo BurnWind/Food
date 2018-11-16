@@ -13,12 +13,12 @@ Page({
     ],
     num:1,
     product: [
-    // {
-    //   img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-    //   text: '测试商品',
-    //   price: '18',
-    //   url: '/pages/product_detail/product_detail'
-    // },
+      // {
+      // img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+      // text: '测试商品',
+      // price: '18',
+      // url: '/pages/product_detail/product_detail'
+      // },
     ]
   },
   select:function(e){
@@ -36,7 +36,6 @@ Page({
     wx.request({
       url: 'http://176.122.11.85:5000/classify/get_products/' + that.data.num,
       success: function(data){
-        console.log(data)
         that.setData({
           product:data.data
         })

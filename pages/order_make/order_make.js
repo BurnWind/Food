@@ -1,4 +1,5 @@
 // pages/order_make/order_make.js
+const app = getApp()
 Page({
 
   /**
@@ -73,11 +74,79 @@ Page({
       }
     })
   },
+  gettoken: function(){
+    var that = this
+    var token = wx.getStorageSync('token')
+    if (!token) {
+      app.indexLogin()
+      setTimeout(function(){
+        token = that.gettoken()
+      },1000)
+    }
+    return token
+  },
+  // 提交订单
+  commit_order: function(){
+    var that = this
+    var token = that.gettoken()
+    wx.request({
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      url: 'http://127.0.0.1:5000/order/make',
+      method: 'post',
+      data:{
+        'receive': JSON.stringify(that.data.receive),
+        'order': JSON.stringify(that.data.order),
+        'total': that.data.total,
+        'token': token
+      },
+      success: function(data){
+        if (data.statusCode == 200){
+          //调用微信支付接口
+          //因权限不够用模态窗模拟
+          wx.showModal({
+            title: '微信支付',
+            content: '￥' + that.data.total,
+            success: function(res){
+              if(res.confirm){
+                console.log('支付成功')
+                wx.request({
+                  url: 'order/pay',
+                  data: data.data,
+                })
+              }else if(res.cancel){
+
+              }
+            }
+          })
+        }else if (data.statusCode == 403){
+          app.indexLogin()
+          setTimeout(function(){
+            that.commit_order()
+          },1000)
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    var products = options.products
+    wx.request({
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      url: 'http://127.0.0.1:5000/order/get_products',
+      data:{
+        'products':JSON.stringify(products)
+      },
+      method:'post',
+      success: function(data){
+        console.log(data)
+        // that.setData({
+        //   order : data.data.order
+        // })
+      }
+    })
   },
 
   /**

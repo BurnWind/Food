@@ -7,7 +7,9 @@ Page({
   data: {
     id: 0,
     banner: {
-      imgUrls: [],
+      imgUrls: [
+        // '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
+      ],
       indicatorDots: true,
       autoplay: true,
       interval: 5000,
@@ -16,11 +18,13 @@ Page({
       height: 'auto',
     },
     product:{
-      title:'',
-      price:0,
-      sales:0,
-      remaining:0,
-      product_detail:[],
+      title:'无穷盐焗鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅',
+      price:17.90,
+      sales:1672,
+      remaining:100,
+      product_detail:[
+        // '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
+      ],
       height:'auto'
     },
     shop:{
@@ -134,6 +138,12 @@ Page({
         }
       }
     })   
+  },
+  buyNow: function(){
+    var that = this
+    wx.navigateTo({
+      url:'/pages/order_make/order_make?products=' + JSON.stringify([{"id":that.data.id,"num":that.data.dialog.quantity}])
+    })
   },
   /**
    * 生命周期函数--监听页面加载
