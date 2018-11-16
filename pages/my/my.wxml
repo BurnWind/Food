@@ -3,11 +3,11 @@
   <view class="userinfo">
     <block wx:if="{{hasUserInfo}}">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="userinfo-nickname" >{{userInfo.nickName}}</text>
     </block>
     <block wx:else>
       <image class="userinfo-avatar" class="userinfo-avatar" src="/images/icon/default.png"></image>
-      <button class="userinfo-nickname userinfo-none" bindtap="bindGetUserInfo">点击显示微信头像</button>
+      <button class="userinfo-nickname userinfo-none" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">点击显示微信头像</button>
     </block>
   </view>
   <view class="login_bar">
