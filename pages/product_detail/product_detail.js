@@ -151,10 +151,6 @@ Page({
     wx.request({
       url: "http://176.122.11.85:5000/product_detail?id="+that.data.id,
       success: function(res){
-<<<<<<< HEAD
-        console.log(res)
-=======
->>>>>>> lxt
         that.setData({
           ["banner.imgUrls"]: res.data.imgUrls,
           shop: res.data.shop,
