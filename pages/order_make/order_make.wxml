@@ -53,5 +53,5 @@
 <!-- 底部悬浮栏 -->
 <view class="bottom-bar">
   <view class="total"><text>合计：</text><text class="total-price">￥{{total}}</text></view>
-  <view class="buy-now" bindtap="showDialogBuy">提交订单</view>
+  <view class="buy-now" bindtap="commit_order">提交订单</view>
 </view>

@@ -128,6 +128,12 @@ Page({
       duration: 1000
     })
   },
+  buyNow: function(){
+    var that = this
+    wx.navigateTo({
+      url:'/pages/order_make/order_make?products=' + JSON.stringify([{"id":that.data.id,"num":that.data.dialog.quantity}])
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -145,7 +151,6 @@ Page({
     wx.request({
       url: "http://176.122.11.85:5000/product_detail?id="+that.data.id,
       success: function(res){
-        console.log(res)
         that.setData({
           ["banner.imgUrls"]: res.data.imgUrls,
           shop: res.data.shop,
