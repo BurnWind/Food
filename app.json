@@ -16,7 +16,9 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#D3B579",
     "navigationBarTitleText": "好好吃零食店 - 首页",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#d8d8d8"
   },
   "tabBar":{
     "color":"#000",

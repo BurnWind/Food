@@ -6,18 +6,19 @@ Page({
    */
   data: {
     classify:[
-      {
-        text:'膨化食品',
-        index:0,
-      },
+      // {
+      //   text:'膨化食品',
+      //   index:0,
+      // },
     ],
     num:1,
-    product: [{
-      img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-      text: '测试商品',
-      price: '18',
-      url: '/pages/product_detail/product_detail'
-    },
+    product: [
+    // {
+    //   img_url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+    //   text: '测试商品',
+    //   price: '18',
+    //   url: '/pages/product_detail/product_detail'
+    // },
     ]
   },
   select:function(e){
@@ -33,7 +34,7 @@ Page({
     }
     
     wx.request({
-      url: 'http://127.0.0.1:5000/classify/get_products/' + that.data.num,
+      url: 'http://176.122.11.85:5000/classify/get_products/' + that.data.num,
       success: function(data){
         console.log(data)
         that.setData({
@@ -56,7 +57,7 @@ Page({
   onReady: function () {
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/classification',
+      url: 'http://176.122.11.85:5000/classification',
       success: function(data){
         that.setData({
           classify:data.data

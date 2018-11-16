@@ -7,9 +7,7 @@ Page({
   data: {
     id: 0,
     banner: {
-      imgUrls: [
-        // '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
-      ],
+      imgUrls: [],
       indicatorDots: true,
       autoplay: true,
       interval: 5000,
@@ -18,13 +16,11 @@ Page({
       height: 'auto',
     },
     product:{
-      title:'无穷盐焗鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅鸡翅',
-      price:17.90,
-      sales:1672,
-      remaining:100,
-      product_detail:[
-        // '../../images/O1CN0124xLvPHX9fJj0vH_!!1657487457.jpg_430x430q90.jpg',
-      ],
+      title:'',
+      price:0,
+      sales:0,
+      remaining:0,
+      product_detail:[],
       height:'auto'
     },
     shop:{
@@ -119,14 +115,25 @@ Page({
   },
   // 加入购物车
   addCar: function(){
+    var that = this
     wx.request({
-      url: 'http://127.0.0.1:5000/add_cart',
-    })
-    wx.showToast({
-      title: '加入购物车成功',
-      icon: "success",
-      duration: 1000
-    })
+      url: 'http://176.122.11.85:5000/add_cart',
+      data: { "quantity": that.data.dialog.quantity, "product_id": that.data.id, "token": wx.getStorageSync('token')},
+      success: function(data){
+        if (data.statusCode == 403) {
+          app.indexlogin()
+          setTimeout(function () {
+            that.addCar()
+          }, 2000)
+        }else{
+          wx.showToast({
+            title: '加入购物车成功',
+            icon: "success",
+            duration: 1000
+          })
+        }
+      }
+    })   
   },
   /**
    * 生命周期函数--监听页面加载
@@ -145,7 +152,6 @@ Page({
     wx.request({
       url: "http://176.122.11.85:5000/product_detail?id="+that.data.id,
       success: function(res){
-        console.log(res)
         that.setData({
           ["banner.imgUrls"]: res.data.imgUrls,
           shop: res.data.shop,

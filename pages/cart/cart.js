@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cart_id: 0,
     edit: "编辑",
     // 判断是编辑还是完成页面
     editbool:"true",
@@ -31,18 +32,18 @@ Page({
       ],
     // 商品
     product: [
-    // { 
-    //   id: 4,
-    //   store_id: 3,
-    //   url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-    //   text: '测试商品',
-    //   price: '10',
-    //   remaining: 10,
-    //   product_checked: true,
-    //   delStatus: 'disabled',
-    //   addStatus: 'normal',
-    //   quantity: 1,
-    // },
+    { 
+      id: 4,
+      store_id: 3,
+      url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+      text: '测试商品',
+      price: '10',
+      remaining: 10,
+      product_checked: true,
+      delStatus: 'disabled',
+      addStatus: 'normal',
+      quantity: 1,
+    },
     ],
     // 哪几项商品被选择
     selected: []
@@ -280,7 +281,7 @@ Page({
           }
           console.log(pid)
           wx.request({
-            url: 'https://176.122.11.85:5000/customer_login',
+            url: 'https://176.122.11.85:5000/delete_cart',
             header: { 'content-type': 'application/x-www-form-urlencoded' },
             data:{
               'pid':JSON.stringify(pid)
@@ -293,7 +294,6 @@ Page({
               })
             }
           })
-          
           // that.setData({
           //   product: that.data.product
           // })
@@ -319,7 +319,7 @@ Page({
       }
     }
     this.setData({
-      total: price
+      total: price.toFixed(2)
     })
   },
   // 数组包含函数
@@ -353,12 +353,22 @@ Page({
           app.indexlogin()      
           setTimeout(function(){
             that.getcart()
-          },2000)     
+          },1000)     
         }else{
           that.setData({
             product: data.data.product,
-            store: data.data.store
+            store: data.data.store,
+            cart_id: data.data.cart_id,
           })
+          // 判断购物车是否有商品，然后显示页面
+          if (that.data.product.length > 0) {
+            console.log(that.data.product)
+            that.setData({
+              flag: false
+            })
+            // 默认全选
+            that.checkboxChange()
+          }
         }
       }
     })
@@ -367,16 +377,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // 从后台获取购物车数据
-    this.getcart()
-    // 判断购物车是否有商品，然后显示页面
-    if(this.data.product.length>0){
-      this.setData({
-        flag : false
-      })
-    }
-    // 默认全选
-    this.checkboxChange()
+  // 从后台获取购物车数据
+  this.getcart()
   },
   /**
    * 生命周期函数--监听页面显示
@@ -388,21 +390,29 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    var that = this
+    wx.request({
+      url: 'http://176.122.11.85:5000/update_cart',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {"cart_id":that.data.cart_id,"product":JSON.stringify(that.data.product)},
+      method: "post",
+    })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+   
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getcart()
+    wx.stopPullDownRefresh()
+    
   },
 
   /**
