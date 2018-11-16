@@ -280,7 +280,11 @@ Page({
           }
           console.log(pid)
           wx.request({
+<<<<<<< HEAD
             url: 'https://176.122.11.85:5000/customer_login',
+=======
+            url: 'https://176.122.11.85:5000/delete_cart',
+>>>>>>> lxt
             header: { 'content-type': 'application/x-www-form-urlencoded' },
             data:{
               'pid':JSON.stringify(pid)
