@@ -6,58 +6,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: {},
     receive:{
-      name:'哈哈哈',
-      phone:"13560000000",
-      address:"广东省广州市海珠区 侨光路8号华侨大厦B座7楼"
+      // name:'哈哈哈',
+      // phone:"13560000000",
+      // address:"广东省广州市海珠区 侨光路8号华侨大厦B座7楼"
     },
     order: [
-      {
-        stop: '好好吃零食旗舰店',
-        products: [
-          {
-            img: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-            title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
-            price: 18.90,
-            num: 2,
-          },
-          {
-            img: '../../images/TB2zEQZvcUrBKNjSZPxXXX00pXa_!!880734502.jpg',
-            title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
-            price: 18.90,
-            num: 2,
-          },
-          {
-            img: '../../images/TB2IQBBkH9YBuNjy0FgXXcxcXXa_!!2371566698.jpg',
-            title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
-            price: 18.90,
-            num: 2,
-          }
-        ],
-      },
-      {
-        stop: '好好吃零食旗舰店',
-        products: [
-          {
-            img: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-            title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
-            price: 18.90,
-            num: 2,
-          },
-          {
-            img: '../../images/TB2zEQZvcUrBKNjSZPxXXX00pXa_!!880734502.jpg',
-            title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
-            price: 14.90,
-            num: 2,
-          },
-          {
-            img: '../../images/TB2IQBBkH9YBuNjy0FgXXcxcXXa_!!2371566698.jpg',
-            title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
-            price: 18.90,
-            num: 3,
-          }
-        ],
-      }
+      // {
+      //   stop: '好好吃零食旗舰店',
+      //   products: [
+      //     {
+      //       img: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+      //       title: '测试商品描述测试商品描述测试商品描述测试商品描述测试商品描述',
+      //       price: 18.90,
+      //       num: 2,
+      //     }
+      //   ],
+      // }
     ],
     total:0
   },
@@ -71,6 +37,7 @@ Page({
         that.setData({
           receive: that.data.receive
         })
+        console.log(Object.keys(that.data.receive).length)
       }
     })
   },
@@ -91,13 +58,14 @@ Page({
     var token = that.gettoken()
     wx.request({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
-      url: 'http://127.0.0.1:5000/order/make',
+      url: 'http://176.122.11.85:5000/order/make',
       method: 'post',
       data:{
         'receive': JSON.stringify(that.data.receive),
         'order': JSON.stringify(that.data.order),
         'total': that.data.total,
-        'token': token
+        'token': token,
+        'flag': JSON.stringify(that.data.flag)
       },
       success: function(data){
         if (data.statusCode == 200){
@@ -109,9 +77,12 @@ Page({
             success: function(res){
               if(res.confirm){
                 console.log('支付成功')
+                console.log(data)
                 wx.request({
-                  url: 'order/pay',
+                  url: 'http://176.122.11.85:5000/order/pay',
+                  header: { 'content-type': 'application/x-www-form-urlencoded' },
                   data: data.data,
+                  method: "post"
                 })
               }else if(res.cancel){
 
@@ -133,18 +104,41 @@ Page({
   onLoad: function (options) {
     var that = this
     var products = options.products
+    var flag = options.flag
+    if (!flag){
+      flag = false
+    }else{
+      flag = true
+    }
+    that.setData({
+      flag:flag
+    })
+    var token = that.gettoken()
     wx.request({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
-      url: 'http://127.0.0.1:5000/order/get_products',
-      data:{
-        'products':JSON.stringify(products)
+      url: 'http://176.122.11.85:5000/order/get_products',
+      data: {
+        'products': JSON.stringify(JSON.parse(products)),
+        "token": token
       },
       method:'post',
       success: function(data){
-        console.log(data)
-        // that.setData({
-        //   order : data.data.order
-        // })
+        that.setData({
+          order : data.data.order,
+          receive: data.data.receive,
+          options: options
+        })
+        var order = that.data.order
+        var total = 0
+        for (var i = 0; i < order.length; i++) {
+          var products = order[i].products
+          for (var j = 0; j < products.length; j++) {
+            total += (products[j].price * products[j].num)
+          }
+        }
+        that.setData({
+          total: total.toFixed(2)
+        })
       }
     })
   },
@@ -153,25 +147,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var that = this,
-        order = that.data.order,
-        total = that.data.total;
-    for(var i=0;i<order.length;i++){
-      var products = order[i].products
-      for(var j=0;j<products.length;j++){
-        total += (products[j].price * products[j].num)
-      }
-    }
-    this.setData({
-      total:total
-    })
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -192,7 +174,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad(this.data.options)
+    wx.stopPullDownRefresh()
   },
 
   /**

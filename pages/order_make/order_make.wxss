@@ -18,6 +18,16 @@ page{
   left: 30rpx;
   font-size:36rpx;
 }
+.receive-icon{
+  top:30rpx;
+  font-size: 54rpx;
+  color:#666;
+}
+.receive-description{
+  position: absolute;
+  left: 120rpx;
+  top: 40rpx;
+}
 .receive-name{
   position: absolute;
   top:20rpx;

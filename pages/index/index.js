@@ -6,7 +6,7 @@ Page({
   data:{
     banner:{
       imgUrls: [
-        // '../../images/O1CN011j7xYo9NFIcC7lD_!!880734502.jpg',
+      // '../../images/O1CN011j7xYo9NFIcC7lD_!!880734502.jpg',
       ],
       indicatorDots: true,
       autoplay: true,

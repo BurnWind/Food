@@ -7,7 +7,8 @@
     <navigator class="text_c" url="/pages/index/index" open-type="switchTab">去逛逛</navigator>
   </block>
   <!-- 购物车不空时 -->
-  <view wx:else class="allfood_bar">
+  <block wx:else>
+  <view class="allfood_bar">
     <block wx:for="{{store}}" wx:for-index="s_index" wx:for-item="seller">
       <view class="head" >
         <checkbox-group bindchange="store_checkboxChange" data-index="{{s_index}}">  
@@ -57,9 +58,10 @@
           <text class="total_price">￥{{total}}</text>
           <text class="text_4">不含运费</text>
         </view>
-        <button class="btn_bottom" bindtap="account">结算</button>
+        <button class="btn_bottom" bindtap="account" disabled='{{notallselected}}'>结算</button>
       </block>
-      <button wx:else class="btn_bottom" bindtap="delete">删除</button>
+      <button wx:else class="btn_bottom" bindtap="delete" disabled='{{notallselected}}'>删除</button>
     </view>
   </view>
+  </block>
 </view>

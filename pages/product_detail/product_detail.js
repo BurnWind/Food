@@ -135,6 +135,7 @@ Page({
             icon: "success",
             duration: 1000
           })
+          that.closeDialog()
         }
       }
     })   

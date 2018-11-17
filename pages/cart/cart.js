@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    notallselected: false,
     cart_id: 0,
     edit: "编辑",
     // 判断是编辑还是完成页面
@@ -85,6 +86,30 @@ Page({
     })
     // 计算总价
     this.calculate()
+    // 判断是否全不选
+    this.disable()
+  },
+   /**
+   *  判断是否都不选，都不选按钮变为disabled
+   */
+  disable: function(){
+    var that = this
+    var product = that.data.product
+    var notallselected = true
+    for(let i = 0;i <product.length; i++){
+      if (product[i].product_checked==true){
+        notallselected = false
+        that.setData({
+          notallselected: notallselected
+        })
+        break
+      }
+    }
+    if (notallselected){
+      that.setData({
+        notallselected: notallselected
+      })
+    }
   },
   /**
    *  判断是否全选
@@ -112,7 +137,7 @@ Page({
     var value = e.detail.value
     var s_id = e.currentTarget.dataset.index
     var product = that.data.product
-    var store = that.data.store
+    var store = that.data.store9
     var store_id = store[s_id].store_id
     // 判断是否选中某店的全选按钮
     if(value.length>0){
@@ -142,6 +167,8 @@ Page({
     this.allselect() 
     // 计算总价
     this.calculate()
+    // 判断是否全不选
+    this.disable() 
   },
   /**
    * 多选事件
@@ -191,6 +218,8 @@ Page({
     this.allselect() 
     // 计算总价
     this.calculate()
+    // 判断是否全不选
+    this.disable()
   },
   // 编辑事件
   editpress: function(){
@@ -252,6 +281,33 @@ Page({
       checked: that.data.checked   
     })
   },
+  // 删除购物车函数
+  deletecart:function(pid){
+    var that = this
+    wx.request({
+      url: 'http://176.122.11.85:5000/delete_cart',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        'pid': JSON.stringify(pid),
+        'token': wx.getStorageSync('token')
+      },
+      method: 'post',
+      success: function (data) {
+        if (data.statusCode == 403) {
+          app.indexlogin()
+          setTimeout(function () {
+            that.deletecart()
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: data.data,
+            icon: 'success'
+          })
+          wx.startPullDownRefresh()
+        }
+      }
+    })
+  },
   // 删除购物车商品
   delete: function(){
     var that = this
@@ -280,20 +336,7 @@ Page({
             // that.data.product.splice(i, 1)
           }
           console.log(pid)
-          wx.request({
-            url: 'https://176.122.11.85:5000/delete_cart',
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
-            data:{
-              'pid':JSON.stringify(pid)
-            },
-            method: 'post',
-            success: function(data){
-              wx.showToast({
-                title: data,
-                icon: 'success'
-              })
-            }
-          })
+          that.deletecart(pid)
           // that.setData({
           //   product: that.data.product
           // })
@@ -332,8 +375,27 @@ Page({
     return false
   },
   // 结算
-  // account: function(){
-  // }
+  account: function(){
+    var that = this
+    var products = []
+    var data = {}
+    var pid = []
+    for (let i = 0; i < that.data.selected.length; i++) {
+      for (let j = 0; j < that.data.selected[i].length; j++) {
+        pid.push(parseInt(that.data.selected[i][j]))
+      }
+    }
+    for(let i = 0 ;i < that.data.product.length; i++){
+      if (pid.indexOf(that.data.product[i].id) == -1){
+        continue
+      }
+      data = { "id": that.data.product[i].id, "num": that.data.product[i].quantity}
+      products.push(data)
+    }
+    wx.navigateTo({
+      url: '/pages/order_make/order_make?products=' + JSON.stringify(products) + '&flag=' + true,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -368,6 +430,10 @@ Page({
             })
             // 默认全选
             that.checkboxChange()
+          }else{
+            that.setData({
+              flag: true
+            })  
           }
         }
       }
@@ -378,12 +444,13 @@ Page({
    */
   onReady: function () {
   // 从后台获取购物车数据
-  this.getcart()
+  // this.getcart()
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getcart()
   },
 
   /**
