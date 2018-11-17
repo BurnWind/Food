@@ -146,6 +146,12 @@ Page({
       url:'/pages/order_make/order_make?products=' + JSON.stringify([{"id":that.data.id,"num":that.data.dialog.quantity}])
     })
   },
+  buyNow: function(){
+    var that = this
+    wx.navigateTo({
+      url:'/pages/order_make/order_make?products=' + JSON.stringify([{"id":that.data.id,"num":that.data.dialog.quantity}])
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

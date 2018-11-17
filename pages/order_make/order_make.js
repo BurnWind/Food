@@ -37,7 +37,6 @@ Page({
         that.setData({
           receive: that.data.receive
         })
-        console.log(Object.keys(that.data.receive).length)
       }
     })
   },
@@ -76,8 +75,6 @@ Page({
             content: '￥' + that.data.total,
             success: function(res){
               if(res.confirm){
-                console.log('支付成功')
-                console.log(data)
                 wx.request({
                   url: 'http://176.122.11.85:5000/order/pay',
                   header: { 'content-type': 'application/x-www-form-urlencoded' },

@@ -33,18 +33,18 @@ Page({
       ],
     // 商品
     product: [
-    { 
-      id: 4,
-      store_id: 3,
-      url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
-      text: '测试商品',
-      price: '10',
-      remaining: 10,
-      product_checked: true,
-      delStatus: 'disabled',
-      addStatus: 'normal',
-      quantity: 1,
-    },
+    // { 
+    //   id: 4,
+    //   store_id: 3,
+    //   url: '../../images/TB1qup4aGmWBuNjy1XaXXXCbXXa_!!0-item_pic.jpg',
+    //   text: '测试商品',
+    //   price: '10',
+    //   remaining: 10,
+    //   product_checked: true,
+    //   delStatus: 'disabled',
+    //   addStatus: 'normal',
+    //   quantity: 1,
+    // },
     ],
     // 哪几项商品被选择
     selected: []
@@ -137,7 +137,7 @@ Page({
     var value = e.detail.value
     var s_id = e.currentTarget.dataset.index
     var product = that.data.product
-    var store = that.data.store9
+    var store = that.data.store
     var store_id = store[s_id].store_id
     // 判断是否选中某店的全选按钮
     if(value.length>0){
@@ -335,7 +335,6 @@ Page({
             }
             // that.data.product.splice(i, 1)
           }
-          console.log(pid)
           that.deletecart(pid)
           // that.setData({
           //   product: that.data.product

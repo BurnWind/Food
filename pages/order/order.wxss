@@ -1,4 +1,5 @@
 /* pages/order/order.wxss */
+@import '/pages/order_make/order_make.wxss';
 /* 选项卡 */
 .product-container{
   width:100%;
@@ -26,98 +27,47 @@
 }
 
 /* 订单 */
-.order-container{
-  width:100%;
-  background-color: #f8f8f8;
-}
-.order-item{
-  width:100%;
-  margin-top: 20rpx;
-}
-.order-top{
-  width:100%;
-  position: relative;
-  height:100rpx;
-  background-color: #fff;
-}
-.stop{
-  display:block;
-  position: absolute;
-  top:15rpx;
-  left:20rpx;
-  font-size:28rpx;
-  color:#000;
-}
-.order-id{
-  display:block;
-  position: absolute;
-  bottom:15rpx;
-  left:20rpx;
-  font-size:24rpx;
-  color:#aaa;
-}
 .order-status{
-  display:block;
-  position: absolute;
-  top:15rpx;
-  right:20rpx;
-  font-size:28rpx;
-  color:#D3B579;
-}
-.order-middle{
-  margin-top:10rpx;
-  width:100%;
-}
-.order-product{
+  position: relative;
   width:100%;
   height:200rpx;
-  position: relative;
-  background-color: #f8f8f8;
+  background-color: #D3B579;
 }
-.product-img{
+.status{
   position: absolute;
-  top:10rpx;
-  left: 20rpx;
-  width:150rpx;
+  color:#fff;
+  font-size:36rpx;
+  top:30rpx;
+  left: 40rpx;
+}
+.receive{
+  border-bottom: none;
+  background-color: #fff;
+  width:90%;
   height:150rpx;
-}
-.product-title{
-  display:block;
+  border-radius: 20rpx;
   position: absolute;
-  top:10rpx;
-  left:190rpx;
-  width:50%;
-  height:180rpx;
-  overflow: hidden;
-  font-size:32rpx;
-  color:#000;
+  top:120rpx;
+  left: 5%;
+  box-shadow: 0 0 5rpx 0 rgba(0,0,0,.2);
 }
-.product-price{
-  display:block;
-  position: absolute;
-  top:10rpx;
-  right:20rpx;
-  font-size:28rpx;
-  color:#000;
+.sandp{
+  padding-top:100rpx;
+  background-color: #fff;
 }
-.product-num{
-  display:block;
-  position: absolute;
-  top:90rpx;
-  right:20rpx;
-  font-size:28rpx;
-  color:#aaa;
-}
+
 .order-bottom{
   width:100%;
   height:70rpx;
   background-color: #fff;
+  border-bottom: 1px solid #f8f8f8;
 }
 .sum{
-  float:right;
+  float:left;
   display:block;
   font-size:30rpx;
   line-height: 70rpx;
+  margin-left: 30rpx;
   color:#000;
 }
 .total{
@@ -132,7 +82,6 @@
   width:100%;
   height:80rpx;
   background-color:#fff;
-  border-top:1px solid #f8f8f8;
   position:relative;
 }
 .cancel,.confirm{
