@@ -11,30 +11,60 @@
 
 <!-- 订单 -->
 <view class="order-container">
-  <block wx:for="{{order}}">
-    <view class="order-item">
-      <view class="order-top">
-        <text class="stop">店铺：{{item.stop}}</text>
-        <text class="order-id">订单编号： {{item.id}}</text>
-        <text class="order-status">{{item.status}}</text>
+  <block wx:for="{{orders}}" wx:for-item="order_i">
+    <view class="order-items">
+      <view class="order-status">
+        <text class="status">{{order_i.status}}</text>
+        <!-- 收货地址栏 -->
+        <view class="receive">
+          <text class="iconfont icon-weibiaoti2fuzhi08"></text>
+          <text class="receive-name">收货人: {{order_i.receive.name}}</text>
+          <text class="receive-phone">{{order_i.receive.phone}}</text>
+          <text class="receive-address">{{order_i.receive.address}}</text>
+        </view>
       </view>
-      <view class="order-middle">
-        <block wx:for="{{item.products}}">
-          <view class="order-product">
-            <image class="product-img" src="{{item.img}}"></image>
-            <text class="product-title">{{item.title}}</text>
-            <text class="product-price">￥ {{item.price}}</text>
-            <text class="product-num">x{{item.num}}</text>
+      <!-- 商家与商品 -->
+      <view class="sandp">
+      <block wx:for="{{order_i.order}}">
+        <view class="order-item">
+          <view class="order-top">
+            <text class="stop">{{item.stop}}</text>
           </view>
-        </block>
+          <view class="order-middle">
+            <block wx:for="{{item.products}}">
+              <navigator class="order-product" url='{{item.url}}'>
+                <image class="product-img" src="{{item.img}}"></image>
+                <text class="product-title">{{item.title}}</text>
+                <text class="product-price">￥ {{item.price}}</text>
+                <text class="product-num">x{{item.num}}</text>
+              </navigator>
+            </block>
+          </view>
+        </view>
+      </block>
       </view>
+      <!-- 订单信息 -->
       <view class="order-bottom">
-        <text class="total">￥{{item.total}}</text>
+        <text class="total">￥{{order_i.total}}</text>
         <text class="sum">合计：</text>
       </view>
-      <view class="unpay" wx:if="{{item.status=='未付款'}}">
-        <button class="cancel">取消订单</button>
-        <button class="confirm">确认付款</button>
+      <view class="order-bottom">
+        <text class="total">{{order_i.order_time}}</text>
+        <text class="sum">订单时间 :</text>
+      </view>
+      <view class="order-bottom">
+        <text class="total">{{order_i.order_id}}</text>
+        <text class="sum">订单编号：</text>
+      </view>
+      <view class="unpay" wx:if="{{order_i.status=='待付款'}}">
+        <button class="cancel" bindtap='cancel_order'>取消订单</button>
+        <button class="confirm" bindtap='pay_order'>确认付款</button>
+      </view>
+      <view class="unpay" wx:if="{{order_i.status=='待收货'}}">
+        <button class="confirm" bindtap='commit_order'>确认收货</button>
+      </view>
+      <view class="unpay" wx:if="{{order_i.status=='已完成'}}">
+        <button class="confirm">再次购买</button>
       </view>
     </view>
   </block>
